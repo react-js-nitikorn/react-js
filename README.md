@@ -13,7 +13,12 @@ React js
 
  **Create Project**
  ```
- npx create-react-app todo
+ npx create-react-app todos
+ ```
+ **Run Initial todos**
+ > default default port 3000
+ ```
+ yarn start
  ```
  ### CircleCI
 [**Configuration**](https://circleci.com/docs/2.0/configuration-reference/)
