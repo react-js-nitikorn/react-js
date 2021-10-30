@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/react-js-nitikorn/react-js/tree/main.svg?style=svg)](https://circleci.com/gh/react-js-nitikorn/react-js/tree/main)
 # React-js
 ทำการสร้าง **Github Organization** เป็นของตัวเอง จากนั้นเข้า **Circle CI แล้ว Grant** สิทธิ์ให้เรียบร้อย (เชื่อม Circle Ci + Git Org) เขียน **Pipeline** ในการทำ **Containerize** 
 React js
