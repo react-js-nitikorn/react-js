@@ -32,7 +32,19 @@ React js
  ### CircleCI
 [**Configuration**](https://circleci.com/docs/2.0/configuration-reference/)
  > This document is a reference for the CircleCI 2.x configuration keys that are used in the config.yml file. The presence of a .circleci/config.yml file in your CircleCI-authorized repository branch indicates that you want to use the 2.x infrastructure.
- 
+ ```
+ version: 2.1
+jobs:
+  build:
+    docker:
+      - image: alpine:3.7
+    steps:
+      - run:
+          name: The First Step
+          command: |
+            echo 'Hello World!'
+            echo 'This is the delivery pipeline'
+ ```
 
 ## References
 ### Caching
