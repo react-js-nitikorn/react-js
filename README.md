@@ -22,7 +22,26 @@ React js
  ```
  ## Docker
  ### Caching
-  
+ What is the Caching that is the process of storing data in a [cache](https://searchstorage.techtarget.com/definition/cache).
+ On this project, we will talk about [the Docker Layer Caching (DLC)](https://circleci.com/docs/2.0/docker-layer-caching/) that can reduce Docker image build times on CircleCI.
+ > [docker_layer_caching: true](https://circleci.com/docs/2.0/docker-layer-caching/#configyml)
+ ```
+ version: 2
+jobs:
+  build_elixir:
+    machine:
+      image: ubuntu-2004:202104-01
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run:
+          name: build Elixir image
+          command: docker build -t circleci/elixir:example .
+ ```
+ Indeep about [Images and layers](https://docs.docker.com/storage/storagedriver/)
+![](https://docs.docker.com/storage/storagedriver/images/container-layers.jpg)
+
+ How to [Leverage build cache](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache)
  ### Optimize Base Image
   
  ### Support Multi ENV (Runtime ENV)
@@ -45,12 +64,12 @@ jobs:
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
  ```
-
 ## References
 ### Caching
   1. [Docker Tutorial - Improve Docker builds with Caching and Layers](https://www.youtube.com/watch?v=dSpOBSRJFwg)
   2. [Intro Guide to Dockerfile Best Practices](https://www.docker.com/blog/intro-guide-to-dockerfile-best-practices/)
   3. [Docker Layer Caching](https://docs.semaphoreci.com/ci-cd-environment/docker-layer-caching/)
+  4. [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
  ### Optimize Base Image
   1. [Top 20 Dockerfile best practices](https://sysdig.com/blog/dockerfile-best-practices/)
  ### Support Multi ENV (Runtime ENV)
