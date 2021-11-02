@@ -43,7 +43,7 @@ jobs:
 
  How to [Leverage build cache](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache)
  ### Optimize Base Image
-  
+  If I have issue about how to optimize base image, I usually use [the multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/) that are useful to anyone who has struggled to optimize Dockerfiles while keeping them easy to read and maintain.
  ### Support Multi ENV (Runtime ENV)
  
  ### Container Hardening
