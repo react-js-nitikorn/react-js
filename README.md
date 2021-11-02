@@ -22,7 +22,9 @@ React js
  ```
  ## Docker
  ### Caching
- What is the Caching that is the process of storing data in a [cache](https://searchstorage.techtarget.com/definition/cache).
+ **1. Circle Ci**
+
+ > What is the Caching that is the process of storing data in a [cache](https://searchstorage.techtarget.com/definition/cache).
  On this project, we will talk about [the Docker Layer Caching (DLC)](https://circleci.com/docs/2.0/docker-layer-caching/) that can reduce Docker image build times on CircleCI.
  > [docker_layer_caching: true](https://circleci.com/docs/2.0/docker-layer-caching/#configyml)
  ```
@@ -38,12 +40,32 @@ jobs:
           name: build Elixir image
           command: docker build -t circleci/elixir:example .
  ```
+ **2. Docker caching**
+
  Indeep about [Images and layers](https://docs.docker.com/storage/storagedriver/)
 ![](https://docs.docker.com/storage/storagedriver/images/container-layers.jpg)
 
  How to [Leverage build cache](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache)
  ### Optimize Base Image
   If I have issue about how to optimize base image, I usually use [the multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/) that are useful to anyone who has struggled to optimize Dockerfiles while keeping them easy to read and maintain.
+
+  [Use multi-stage build](https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds)
+  
+  **Dockerfile**
+  ```
+  # syntax=docker/dockerfile:1
+  FROM golang:1.16
+  WORKDIR /go/src/github.com/alexellis/href-counter/
+  RUN go get -d -v golang.org/x/net/html  
+  COPY app.go ./
+  RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+
+  FROM alpine:latest  
+  RUN apk --no-cache add ca-certificates
+  WORKDIR /root/
+  COPY --from=0 /go/src/github.com/alexellis/href-counter/app ./
+  CMD ["./app"]  
+  ```
  ### Support Multi ENV (Runtime ENV)
  
  ### Container Hardening
