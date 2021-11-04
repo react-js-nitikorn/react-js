@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - run: 
-        name: todo
-        command: docker build -t todo:1.0.2 .
+         name: todo
+         command: docker build -t todo:1.0.2 .
 workflows:
   build_and_test:
     jobs:
