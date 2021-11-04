@@ -1,5 +1,5 @@
 FROM node:16-buster as dev
-WORKDIR /to-do
+WORKDIR $SOURCE
 COPY package.json package.json
 COPY yarn.lock yarn.lock
 COPY  . .
