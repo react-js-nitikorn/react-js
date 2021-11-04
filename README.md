@@ -21,8 +21,8 @@ React js
  yarn start
  ```
  ## Docker
- ### Caching
- **1. Circle Ci**
+ ### 1. Caching
+ **1.1 Circle CI**
 
  > What is the Caching that is the process of storing data in a [cache](https://searchstorage.techtarget.com/definition/cache).
  On this project, we will talk about [the Docker Layer Caching (DLC)](https://circleci.com/docs/2.0/docker-layer-caching/) that can reduce Docker image build times on CircleCI.
@@ -40,37 +40,37 @@ jobs:
           name: build Elixir image
           command: docker build -t circleci/elixir:example .
  ```
- **2. Docker caching**
+ **1.2 Docker caching**
 
  Indeep about [Images and layers](https://docs.docker.com/storage/storagedriver/)
 ![](https://docs.docker.com/storage/storagedriver/images/container-layers.jpg)
 
  How to [Leverage build cache](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache)
- ### Optimize Base Image
+ ### 2. Optimize Base Image
   If I have issue about how to optimize base image, I usually use [the multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/) that are useful to anyone who has struggled to optimize Dockerfiles while keeping them easy to read and maintain.
 
   [Use multi-stage build](https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds)
   
   **Dockerfile**
   ```
-  # syntax=docker/dockerfile:1
-  FROM golang:1.16
-  WORKDIR /go/src/github.com/alexellis/href-counter/
-  RUN go get -d -v golang.org/x/net/html  
-  COPY app.go ./
-  RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
+ FROM node:16-buster as dev
+ WORKDIR /to-do
+ COPY package.json package.json
+ COPY yarn.lock yarn.lock
+ COPY  . .
+ RUN yarn 
+ RUN yarn build --profile
 
-  FROM alpine:latest  
-  RUN apk --no-cache add ca-certificates
-  WORKDIR /root/
-  COPY --from=0 /go/src/github.com/alexellis/href-counter/app ./
-  CMD ["./app"]  
+ FROM nginx:1.21.3-alpine 
+ COPY --from=dev /to-do/build/ /usr/share/nginx/html
+ EXPOSE 80
+
   ```
- ### Support Multi ENV (Runtime ENV)
+ ### 3. Support Multi ENV (Runtime ENV)
  
- ### Container Hardening
+ ### 4. Container Hardening
 
- ### CircleCI
+ ### 5. CircleCI
 [**Configuration**](https://circleci.com/docs/2.0/configuration-reference/)
  > This document is a reference for the CircleCI 2.x configuration keys that are used in the config.yml file. The presence of a .circleci/config.yml file in your CircleCI-authorized repository branch indicates that you want to use the 2.x infrastructure.
  ```
