@@ -1,4 +1,6 @@
 version: 2
+orbs:
+  node: circleci/node@4.7.0
 jobs:
   build:
     docker:
@@ -7,6 +9,7 @@ jobs:
       #     username: $DOCKERHUB_USERNAME
       #     password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
+      - checkout
       - run: docker build -t todo:1.0.2 .
 workflows:
   version: 2
