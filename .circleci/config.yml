@@ -1,3 +1,15 @@
 version: 2
 orbs:
-  node: circleci/node@4.7.0`
+  node: circleci/node@4.7.0
+jobs:
+ build:
+   docker:
+     - image: docker
+   steps:
+     - setup_remote_docker:
+          docker_layer_caching: true
+     - run: docker images ls
+workflows:
+    todo:
+      jobs:
+        - build
