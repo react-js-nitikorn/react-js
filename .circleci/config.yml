@@ -1,17 +1,15 @@
 version: 2
-orbs:
-  node: circleci/node@4.7.0
 jobs:
   build:
-    docker:
-      # - image: cimg/<language>:<version TAG>
-      #   auth:
-      #     username: $DOCKERHUB_USERNAME
-      #     password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    machine:
+      image: node:16-buster 
+      docker_layer_caching: true
     steps:
       - checkout
-      - run: docker build -t todo:1.0.2 .
+      - run: 
+        name: todo
+        command: docker build -t todo:1.0.2 .
 workflows:
   build_and_test:
     jobs:
-      - buil
+      - build
