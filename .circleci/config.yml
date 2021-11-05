@@ -9,9 +9,10 @@ jobs:
      - checkout
      - setup_remote_docker:
           docker_layer_caching: true
-     - run: docker images ls
      - run: ls
      - run: pwd
+     - run: docker build -t todo ./$SOURCE
+     - run: docker images ls
 workflows:
     build:
       jobs:
