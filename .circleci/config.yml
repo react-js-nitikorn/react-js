@@ -3,8 +3,9 @@ orbs:
   node: circleci/node@4.7.0
 jobs:
  build:
-   docker:
-     - image: docker
+   machine:
+      image: ubuntu-2004:202010-01
+      resource_class: medium
    steps:
      - checkout
      - setup_remote_docker:
