@@ -11,7 +11,7 @@ jobs:
           docker_layer_caching: true
      - run: docker images ls
      - run: ls
-     - run: cd ./todo
+     - run: cd $SOURCE
      - run: git log --format=%h -1
      - run: echo $SOURCE
 workflows:
