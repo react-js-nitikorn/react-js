@@ -9,12 +9,12 @@ jobs:
      - checkout
      - setup_remote_docker:
           docker_layer_caching: true
-     - run: docker images ls
      - run: ls
-     - run: cd $SOURCE
-     - run: git log --format=%h -1
-     - run: echo $SOURCE
+     - run: pwd
+     - run: docker build -t todo ./$SOURCE
+     - run: docker images ls
 workflows:
-    todo:
+    build:
       jobs:
-        - build
+        - build:
+           context: react-js
