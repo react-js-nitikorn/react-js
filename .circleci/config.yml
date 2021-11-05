@@ -12,7 +12,9 @@ jobs:
      - run: docker images ls
      - run: ls
      - run: echo $SOURCE
+     - run: echo $DOCKERHUB_PASSWORD
 workflows:
-    todo:
+    build:
       jobs:
-        - build
+        - build:
+           context: react-js
