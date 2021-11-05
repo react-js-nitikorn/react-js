@@ -5,7 +5,7 @@ jobs:
  build:
    docker:
      - image: docker
-   working_directory: ~/$SOURCE
+   working_directory: ~/todo
    steps:
      - checkout
      - setup_remote_docker:
