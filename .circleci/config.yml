@@ -1,6 +1,6 @@
 version: 2.1
-# orbs:
-#   node: circleci/node@4.7.0
+ orbs:
+   node: circleci/node@4.7.0
 jobs:
  build:
    docker:
@@ -9,8 +9,12 @@ jobs:
      - checkout
      - setup_remote_docker:
           docker_layer_caching: true
-     - run: docker build -t todo ./$SOURCE
-     - run: docker images ls
+          - run: node --version
+          - run: yarn --version
+          - run: yarn
+          - run: yarn build --profile
+          #     - run: docker build -t todo ./$SOURCE
+          #     - run: docker images ls
 
 workflows:
     build:
