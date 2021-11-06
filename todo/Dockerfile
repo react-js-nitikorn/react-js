@@ -4,7 +4,7 @@ ENV SOURCE=${SOURCE}
 WORKDIR SOURCE
 COPY . .
 RUN yarn --version
-RUN yarn
+RUN yarn install --force
 RUN yarn build --profile
 
 FROM nginx:1.21.3-alpine 
