@@ -28,17 +28,28 @@ React js
  On this project, we will talk about [the Docker Layer Caching (DLC)](https://circleci.com/docs/2.0/docker-layer-caching/) that can reduce Docker image build times on CircleCI.
  > [docker_layer_caching: true](https://circleci.com/docs/2.0/docker-layer-caching/#configyml)
  ```
- version: 2
+version: 2.1
+# orbs:
+#   node: circleci/node@4.7.0
 jobs:
-  build_elixir:
-    machine:
-      image: ubuntu-2004:202104-01
-      docker_layer_caching: true
-    steps:
-      - checkout
-      - run:
-          name: build Elixir image
-          command: docker build -t circleci/elixir:example .
+ build:
+   docker:
+      - image: cimg/node:17.0.1
+   steps:
+     - checkout
+     - setup_remote_docker:
+          docker_layer_caching: true
+     - run: ls
+     - run: pwd
+     - run: docker build -t todo ./$SOURCE
+     - run: docker images ls
+
+workflows:
+    build:
+      jobs:
+        - build:
+           context: react-js
+
  ```
  **1.2 Docker caching**
 
@@ -53,17 +64,19 @@ jobs:
   
   **Dockerfile**
   ```
- FROM node:16-buster as dev
- WORKDIR /to-do
- COPY package.json package.json
- COPY yarn.lock yarn.lock
- COPY  . .
- RUN yarn 
- RUN yarn build --profile
+FROM node:16-buster as dev
+ARG SOURCE
+ENV SOURCE=${SOURCE}
+WORKDIR SOURCE
+COPY . .
+RUN yarn
+RUN yarn build --profile
 
- FROM nginx:1.21.3-alpine 
- COPY --from=dev /to-do/build/ /usr/share/nginx/html
- EXPOSE 80
+FROM nginx:1.21.3-alpine 
+ARG SOURCE
+ENV SOURCE=${SOURCE}
+COPY --from=dev /${SOURCE}/build/ /usr/share/nginx/html
+EXPOSE 80
 
   ```
  ### 3. Support Multi ENV (Runtime ENV)
