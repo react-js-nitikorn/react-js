@@ -3,6 +3,7 @@ ARG SOURCE
 ENV SOURCE=${SOURCE}
 WORKDIR SOURCE
 COPY . .
+RUN yarn --version
 RUN yarn
 RUN yarn build --profile
 
