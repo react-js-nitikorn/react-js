@@ -5,13 +5,14 @@ jobs:
  build:
    docker:
       - image: cimg/node:17.0.1
+   working_directory: $SOURCE/
    steps:
      - checkout
      - setup_remote_docker:
           docker_layer_caching: true
      - run: node --version
      - run: yarn --version
-     - run: cd $SOURCE
+     - run: cd 
      - run: ls
      #- run: yarn
      #- run: yarn build --profile
