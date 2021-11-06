@@ -11,10 +11,11 @@ jobs:
           docker_layer_caching: true
      - run: node --version
      - run: yarn --version
-     - run: yarn
-     - run: yarn build --profile
-          #     - run: docker build -t todo ./$SOURCE
-          #     - run: docker images ls
+     - run: ls
+     #- run: yarn
+     #- run: yarn build --profile
+     # - run: docker build -t todo ./$SOURCE
+     # - run: docker images ls
 
 workflows:
     build:
