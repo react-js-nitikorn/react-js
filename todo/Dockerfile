@@ -4,6 +4,7 @@ ENV SOURCE=${SOURCE}
 WORKDIR SOURCE
 COPY . .
 RUN yarn --version
+RUN npm install
 RUN yarn install --force
 RUN yarn build --profile
 
