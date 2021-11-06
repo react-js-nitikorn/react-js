@@ -9,10 +9,10 @@ jobs:
      - checkout
      - setup_remote_docker:
           docker_layer_caching: true
-          - run: node --version
-          - run: yarn --version
-          - run: yarn
-          - run: yarn build --profile
+     - run: node --version
+     - run: yarn --version
+     - run: yarn
+     - run: yarn build --profile
           #     - run: docker build -t todo ./$SOURCE
           #     - run: docker images ls
 
