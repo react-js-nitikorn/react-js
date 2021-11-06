@@ -1,5 +1,7 @@
 FROM node:16-buster as dev
-WORKDIR /todo
+ARG SOURCE
+ENV SOURCE=${SOURCE}
+WORKDIR SOURCE
 COPY package.json package.json
 COPY yarn.lock yarn.lock
 COPY  . .
