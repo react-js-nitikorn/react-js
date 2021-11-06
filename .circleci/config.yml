@@ -12,7 +12,8 @@ jobs:
      - run: node --version
      - run: yarn --version
      - run: echo $SOURCE 
-     - run: mkdir hello && cd hello
+     - run: mkdir hello 
+     - run: cd hello
      - run: touch hello.txt
      - run: ls
      #- run: yarn
