@@ -4,8 +4,7 @@ ENV SOURCE=${SOURCE}
 WORKDIR SOURCE
 COPY package.json package.json
 COPY yarn.lock yarn.lock
-COPY  . .
-RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+COPY SOURCE SOURCE
 RUN yarn
 RUN yarn build --profile
 
