@@ -5,6 +5,7 @@ WORKDIR SOURCE
 COPY . .
 RUN yarn --version
 RUN npm install
+RUN npm audit fix --force
 RUN yarn build --profile
 
 FROM nginx:1.21.3-alpine 
