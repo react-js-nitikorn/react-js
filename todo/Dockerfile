@@ -2,9 +2,10 @@ FROM node:16-buster as dev
 ARG SOURCE
 ENV SOURCE=${SOURCE}
 WORKDIR SOURCE
+COPY SOURCE/ SOURCE/
 COPY package.json package.json
 COPY yarn.lock yarn.lock
-COPY SOURCE SOURCE
+
 RUN yarn
 RUN yarn build --profile
 
