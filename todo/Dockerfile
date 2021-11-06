@@ -3,7 +3,8 @@ WORKDIR /todo
 COPY package.json package.json
 COPY yarn.lock yarn.lock
 COPY  . .
-RUN yarn 
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+RUN yarn
 RUN yarn build --profile
 
 FROM nginx:1.21.3-alpine 
