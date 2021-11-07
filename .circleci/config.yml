@@ -10,7 +10,7 @@ jobs:
      - setup_remote_docker:
           docker_layer_caching: true
      - run: yarn --version
-     - run: yarn --cwd ./$SOURCE
+     - run: yarn --cwd ./$SOURCE add
      - run: yarn --cwd ./$SOURCE build --profile
      - run: ls
      #- run: yarn
