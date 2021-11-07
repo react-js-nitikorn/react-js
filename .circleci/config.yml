@@ -4,7 +4,7 @@ orbs:
 jobs:
  build:
    docker:
-      - image: cimg/node:16.0.1
+      - image: cimg/node:17.0.1
    steps:
      - checkout
      - setup_remote_docker:
