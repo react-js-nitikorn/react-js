@@ -111,3 +111,6 @@ jobs:
   1. [Docker multi-stage build and environment variables](https://dev.to/migsarnavarro/docker-multi-stage-build-and-environment-variables-4lp2)
  ### Container Hardening
  1. [Container security best practices: Comprehensive guide](https://sysdig.com/blog/container-security-best-practices/)
+ 
+ ### CircleCI 
+1. [Intro to CircleCI with React](https://www.youtube.com/watch?v=slGMKIDg7gM)
